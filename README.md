@@ -1,5 +1,6 @@
 # Projeto MiniDB
 Projeto de Database Systems que visa construir um Sistema Gerenciador de Banco de Dados em python
+
 ***MÓDULOS:***
 
 **1 - Página e arquivo de dados. Registros de tamanho fixo em páginas de tamanho fixo.**
