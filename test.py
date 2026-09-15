@@ -1,7 +1,12 @@
 import service
+#testando local da gravação e regra de tamanho máximo de registro
+service.gravador("teste7.txt" , 1 ,1, b"joao")
+service.gravador("teste7.txt" , 1 ,5, b"kakaroto")
+service.gravador("teste7.txt", 1, 6 , "orochimaru")
 
-service.gravador("teste.txt" , 1 , "joao")
-service.gravador("teste.txt" , 2, "paulo")
-service.gravador("teste.txt" , 3, "neymar99")
+
+
+
+
 
 
