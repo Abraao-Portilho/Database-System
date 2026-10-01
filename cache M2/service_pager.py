@@ -18,7 +18,7 @@ class Pager:
         inicio_gravacao = self.tamanho_pag * page_id
         self.arquivo.seek(inicio_gravacao)
         self.arquivo.write(bytearray(self.tamanho_pag))
-        #self.sync() #precisa forçar a escrita no hd dessa função que aloca uma página?
+        
 
     def escreve(self,page_id,dados):
         if type(dados) != str:
@@ -27,7 +27,7 @@ class Pager:
         inicio_gravacao = self.tamanho_pag * page_id
         self.arquivo.seek(inicio_gravacao)
         self.arquivo.write(dados_em_binario)
-        self.sync()
+        
 
     def escreve_registro_unico(self, page_id, slot_id, dados):
         if type(dados) != str:
@@ -39,7 +39,7 @@ class Pager:
         inicio_gravacao = self.deslocamento(page_id, slot_id)
         self.arquivo.seek(inicio_gravacao)
         self.arquivo.write(dados_em_binario)
-        self.sync()
+        
         
     def le(self, page_id):
         self.arquivo = open(self.local_arquivo, "r+b")

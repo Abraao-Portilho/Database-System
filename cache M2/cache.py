@@ -2,10 +2,10 @@ from collections import OrderedDict
 class Cache:
     def __init__(self, pager, capacidade=16):
         self.pager, self.cap = pager, capacidade
-        self.frames = {}              # pagina -> buffer
+        self.frames = {}              
         self.suja   = set()
-        self.fixada = {}              # pagina -> contador
-        self.uso    = OrderedDict()   # ordem de uso, mais antigo primeiro
+        self.fixada = {}              
+        self.uso    = OrderedDict()   
         self.acertos = self.faltas = 0
 
     def fixa(self, n):
@@ -18,7 +18,7 @@ class Cache:
                 self._expulsa()
             self.frames[n] = self.pager.le(n)
             self.uso[n] = True
-        self.fixada[n] = self.fixada.get(n, 0) + 1
+        self.fixada[n] = self.fixada.get(n, 0) + 1 #aumenta contador de pin -> avisa que a pagina esta sendo usada
         return self.frames[n]
 
     def solta(self, n, sujou=False):
@@ -27,7 +27,7 @@ class Cache:
         self.fixada[n] -= 1
 
     def _expulsa(self):
-        for n in list(self.uso):                  # do mais antigo para o mais novo
+        for n in list(self.uso):                  
             if self.fixada.get(n, 0) == 0:
                 if n in self.suja:
                     self.pager.escreve(n, self.frames[n])
@@ -36,12 +36,15 @@ class Cache:
                 return
         raise RuntimeError("todas as páginas estão fixadas")
 
-    def descarrega(self):                         # no fim do programa, e no commit do M6
+    def descarrega(self):                         
         for n in list(self.suja):
             self.pager.escreve(n, self.frames[n])
         self.suja.clear()
         self.pager.sync()
     
+        
+
+
 
 
 
